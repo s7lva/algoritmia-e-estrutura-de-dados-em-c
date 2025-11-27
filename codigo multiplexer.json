@@ -1,0 +1,138 @@
+{
+  "name": "MUX 16x1 - Implementação da Função F",
+  "projectId": 0,
+  "description": "F = X'Y' + X'Z'V' + X'Y'V' + Z'Y'V' + Y'V' (Mintermos: 0, 1, 2, 3, 4, 6, 8, 12, 14)",
+  "designerId": 0,
+  "circuitElement": {
+    "type": "Circuit",
+    "name": "main",
+    "clock": 0,
+    "lock": false,
+    "tunnel": false,
+    "propagationDelay": 1,
+    "layout": {
+      "width": 600,
+      "height": 400
+    },
+    "children": [
+      {
+        "type": "Multiplexer",
+        "label": "MUX 16x1",
+        "layout": {
+          "x": 300,
+          "y": 120
+        },
+        "bits": 1,
+        "controlBits": 4,
+        "inputCount": 16
+      },
+      {
+        "type": "Input",
+        "label": "X (S3/MSB)",
+        "layout": {
+          "x": 100,
+          "y": 0
+        },
+        "bits": 1
+      },
+      {
+        "type": "Input",
+        "label": "Y (S2)",
+        "layout": {
+          "x": 100,
+          "y": 40
+        },
+        "bits": 1
+      },
+      {
+        "type": "Input",
+        "label": "Z (S1)",
+        "layout": {
+          "x": 100,
+          "y": 80
+        },
+        "bits": 1
+      },
+      {
+        "type": "Input",
+        "label": "V (S0/LSB)",
+        "layout": {
+          "x": 100,
+          "y": 120
+        },
+        "bits": 1
+      },
+      {
+        "type": "Output",
+        "label": "F (Saída)",
+        "layout": {
+          "x": 500,
+          "y": 120
+        },
+        "bits": 1
+      },
+      {
+        "type": "ConstantVal",
+        "label": "Vcc (1)",
+        "layout": {
+          "x": 100,
+          "y": 300
+        },
+        "bits": 1,
+        "value": 1
+      },
+      {
+        "type": "ConstantVal",
+        "label": "GND (0)",
+        "layout": {
+          "x": 100,
+          "y": 340
+        },
+        "bits": 1,
+        "value": 0
+      },
+      {
+        "type": "Splitter",
+        "layout": {
+          "x": 260,
+          "y": 120
+        },
+        "bits": 4,
+        "splitterOutput": 4,
+        "splitterInput": 4,
+        "direction": "left"
+      }
+    ],
+    "connections": [
+      ["MUX 16x1", "output", "F (Saída)", "input"],
+      ["MUX 16x1", "control_1", "Splitter", "output_3"],
+      ["MUX 16x1", "control_2", "Splitter", "output_2"],
+      ["MUX 16x1", "control_3", "Splitter", "output_1"],
+      ["MUX 16x1", "control_4", "Splitter", "output_0"],
+      ["Splitter", "input", "X (S3/MSB)", "output"],
+      ["Splitter", "input", "Y (S2)", "output"],
+      ["Splitter", "input", "Z (S1)", "output"],
+      ["Splitter", "input", "V (S0/LSB)", "output"],
+      
+      // Conexões Vcc ('1') - Mintermos: 0, 1, 2, 3, 4, 6, 8, 12, 14
+      ["MUX 16x1", "in_0", "Vcc (1)", "output"],
+      ["MUX 16x1", "in_1", "Vcc (1)", "output"],
+      ["MUX 16x1", "in_2", "Vcc (1)", "output"],
+      ["MUX 16x1", "in_3", "Vcc (1)", "output"],
+      ["MUX 16x1", "in_4", "Vcc (1)", "output"],
+      ["MUX 16x1", "in_6", "Vcc (1)", "output"],
+      ["MUX 16x1", "in_8", "Vcc (1)", "output"],
+      ["MUX 16x1", "in_12", "Vcc (1)", "output"],
+      ["MUX 16x1", "in_14", "Vcc (1)", "output"],
+      
+      // Conexões GND ('0') - Mintermos: 5, 7, 9, 10, 11, 13, 15
+      ["MUX 16x1", "in_5", "GND (0)", "output"],
+      ["MUX 16x1", "in_7", "GND (0)", "output"],
+      ["MUX 16x1", "in_9", "GND (0)", "output"],
+      ["MUX 16x1", "in_10", "GND (0)", "output"],
+      ["MUX 16x1", "in_11", "GND (0)", "output"],
+      ["MUX 16x1", "in_13", "GND (0)", "output"],
+      ["MUX 16x1", "in_15", "GND (0)", "output"]
+    ]
+  }
+}

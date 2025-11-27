@@ -1,0 +1,23 @@
+
+read(n)
+   do for i =1 to N 
+    read(array[i])
+   
+
+    for j (i + 1) TO (N - 1) DO
+       if (array[j] < array[min_index]) 
+             then  min_index <- j
+        
+
+        temp <- array[i]
+        array[i] <- array[min_index]
+        array[min_index] <- temp
+
+     Write(' O array ordenado é: ')
+
+     do for i=1 to n
+          write(array[i]
+
+
+    exit
+      
